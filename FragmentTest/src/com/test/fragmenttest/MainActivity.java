@@ -22,12 +22,12 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				AnotherRightFragment fragment = new AnotherRightFragment();
-				FragmentManager fragmentManager = getFragmentManager();
-				FragmentTransaction transaction = fragmentManager.beginTransaction();
-				transaction.replace(R.id.right_layout, fragment);
-				transaction.addToBackStack(null);
-				transaction.commit();
+				//AnotherRightFragment fragment = new AnotherRightFragment();
+				//FragmentManager fragmentManager = getFragmentManager();
+				//FragmentTransaction transaction = fragmentManager.beginTransaction();
+				//transaction.replace(R.id.right_layout, fragment);
+				//transaction.addToBackStack(null);
+				//transaction.commit();
 			}
 		});
 	}
