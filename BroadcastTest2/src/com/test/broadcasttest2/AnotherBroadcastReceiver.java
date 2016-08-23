@@ -1,17 +1,16 @@
-package com.test.broadcasttest;
+package com.test.broadcasttest2;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
-public class MyBroadcastReceiver extends BroadcastReceiver {
+public class AnotherBroadcastReceiver extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		// TODO Auto-generated method stub
-		Toast.makeText(context, "received in MyBroadcastReceiver", Toast.LENGTH_SHORT).show();
-		abortBroadcast();
+		Toast.makeText(context, "received in AnotherBroadcastReceiver", Toast.LENGTH_SHORT).show();
 	}
 
 }

@@ -32,7 +32,7 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent("com.test.broadcasttest.MY_BROADCAST");
-				sendBroadcast(intent);
+				sendOrderedBroadcast(intent, null);
 			}
 		});
 	}
