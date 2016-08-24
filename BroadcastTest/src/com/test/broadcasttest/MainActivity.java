@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 
 public class MainActivity extends Activity {
-
+ 
 	private IntentFilter intentFilter;
 	
 	private LocalReceiver localReceiver;
