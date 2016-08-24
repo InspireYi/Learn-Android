@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,26 +16,35 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
+
 public class MainActivity extends Activity {
 
 	private IntentFilter intentFilter;
 	
-	private NetworkChangeReceiver networkChangeReceiver;
+	private LocalReceiver localReceiver;
+	
+	private LocalBroadcastManager localBroadcastManager; 
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		localBroadcastManager = localBroadcastManager.getInstance(this);
 		Button button = (Button) findViewById(R.id.button);
 		button.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Intent intent = new Intent("com.test.broadcasttest.MY_BROADCAST");
-				sendOrderedBroadcast(intent, null);
+				Intent intent = new Intent("com.test.broadcasttest.LOCAL_BROADCAST");
+				localBroadcastManager.sendBroadcast(intent);
 			}
 		});
+		intentFilter = new IntentFilter();
+		intentFilter.addAction("com.test.broadcasttest.LOCAL_BROADCAST");
+		localReceiver = new LocalReceiver();
+		localBroadcastManager.registerReceiver(localReceiver, intentFilter);
 	}
 
 	@Override
@@ -60,7 +70,7 @@ public class MainActivity extends Activity {
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
-		unregisterReceiver(networkChangeReceiver);
+		localBroadcastManager.unregisterReceiver(localReceiver);
 	}
 	
 	class NetworkChangeReceiver extends BroadcastReceiver{
@@ -77,4 +87,13 @@ public class MainActivity extends Activity {
 			}
 		}
 	}
+	
+	class LocalReceiver extends BroadcastReceiver{
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			// TODO Auto-generated method stub
+			Toast.makeText(context, "received local broadcast", Toast.LENGTH_SHORT).show();
+		}
+	}
+	
 }
